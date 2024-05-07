@@ -1,14 +1,12 @@
 import core.DriverInitializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.HomePage;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.net.URL;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomePageTest {
 
@@ -22,6 +20,8 @@ public class HomePageTest {
 
     @Test
     public void testHomePage() {
+        final var body = homePage.body();
 
+        assertTrue(body.getText().contains(""));
     }
 }
