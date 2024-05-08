@@ -1,4 +1,6 @@
 import core.DriverInitializer;
+import core.configuration.ConfigKey;
+import core.configuration.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.HomePage;
@@ -14,7 +16,7 @@ public class HomePageTest {
 
     @BeforeEach
     public void setUp() throws MalformedURLException, URISyntaxException {
-        final var driver = DriverInitializer.initialize("http://selenium:4444/wd/hub");
+        final var driver = DriverInitializer.initialize(Configuration.getProperty(ConfigKey.BROWSER));
         homePage = new HomePage(driver);
     }
 
