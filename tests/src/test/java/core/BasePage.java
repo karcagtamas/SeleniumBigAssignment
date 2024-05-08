@@ -17,6 +17,8 @@ public abstract class BasePage {
 
     protected final By bodySelector = By.tagName("body");
 
+    protected final By overlayTitleSelector = By.xpath("//div[contains(@class, 'overlay-container')]//div[@class='overlay-title']");
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10L);
@@ -30,6 +32,10 @@ public abstract class BasePage {
 
     public WebElement body() {
         return waitAndGet(bodySelector);
+    }
+
+    public WebElement overlayTitle() {
+        return waitAndGet(overlayTitleSelector);
     }
 
     protected String getText(By selector) {

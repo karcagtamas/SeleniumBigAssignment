@@ -2,5 +2,5 @@ browser=http://selenium:4444/wd/hub
 
 url=<url>
 
-email=<email>
+username=<email>
 password=<password>

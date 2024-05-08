@@ -3,7 +3,7 @@ package core.configuration;
 public enum ConfigKey {
     BROWSER("browser"),
     URL("url"),
-    EMAIL("email"),
+    USERNAME("username"),
     PASSWORD("password");
 
     private final String key;
