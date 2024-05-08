@@ -3,6 +3,8 @@ FROM ubuntu:latest
 # Install dependencies
 RUN apt-get update && \
     apt-get install -y curl unzip wget gnupg2 software-properties-common
+    
+RUN apt-get update && apt-get upgrade -y
 
 # Install Java
 RUN add-apt-repository ppa:openjdk-r/ppa && \
@@ -23,6 +25,11 @@ ENV GRADLE_HOME=/opt/gradle
 
 # Add Gradle and Java to PATH
 ENV PATH=$PATH:$GRADLE_HOME/bin:$JAVA_HOME/bin
+
+# Update chrome
+RUN apt-get install -y wget
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 
 RUN apt-get update && apt-get install -y sudo
 

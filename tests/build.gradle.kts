@@ -22,8 +22,8 @@ dependencies {
         exclude(group = "org.hamcrest")
     }
 
-    testImplementation("org.seleniumhq.selenium:selenium-java:2.52.0")
-    testImplementation("org.seleniumhq.selenium:selenium-chrome-driver:3.141.59")
+    testImplementation("org.seleniumhq.selenium:selenium-java:4.20.0")
+    testImplementation("org.seleniumhq.selenium:selenium-chrome-driver:4.20.0")
 
     testImplementation("org.hamcrest:hamcrest-library:1.3")
     testImplementation("org.slf4j:slf4j-simple:1.7.9")

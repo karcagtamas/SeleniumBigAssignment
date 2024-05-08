@@ -39,4 +39,9 @@ public abstract class BasePage {
     protected void click(By selector) {
         waitAndGet(selector).click();
     }
+
+    protected void doHumanCheck() {
+        final var humanCheck = new HumanCheck(driver);
+        humanCheck.check();
+    }
 }
