@@ -21,6 +21,7 @@ public class HomePage extends BasePage {
 
     public ForumPage clickForumNavItem() {
         waitAndGet(forumNavItemSelector).click();
+        body();
 
         return new ForumPage(driver);
     }

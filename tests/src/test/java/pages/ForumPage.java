@@ -10,11 +10,11 @@ import org.openqa.selenium.WebElement;
 public class ForumPage extends BasePage {
 
     private final By loginButtonSelector = By.xpath("//a[.//span[text()='Log in']]");
-    private final By loginUsernameFieldSelector = By.xpath("//input[@name='username']");
+    private final By loginUsernameFieldSelector = By.xpath("//input[@name='login']");
     private final By loginPasswordFieldSelector = By.xpath("//input[@name='password']");
     private final By loginFormButtonSelector = By.xpath("//button[.//span[text()='Log in']]");
     private final By blockMessageSelector = By.xpath("//div[contains(@class,'blockMessage')]");
-    private final By noticeSelector = By.xpath("//div[contains(@class,'notice-content')]");
+    private final By noticesSelector = By.xpath("//ul[contains(@class,'notices')]");
     private final By logoutSelector = By.xpath("//a[text()='Log out']");
 
     public ForumPage(WebDriver driver) {
@@ -35,6 +35,7 @@ public class ForumPage extends BasePage {
 
     public void tryToLogin(String username, String password) {
         clickLoginButton();
+        overlay();
         waitAndGet(loginUsernameFieldSelector).sendKeys(username);
         waitAndGet(loginPasswordFieldSelector).sendKeys(password);
         waitAndGet(loginFormButtonSelector).click();
@@ -44,8 +45,8 @@ public class ForumPage extends BasePage {
         return waitAndGet(blockMessageSelector);
     }
 
-    public WebElement getNotice() {
-        return waitAndGet(noticeSelector);
+    public WebElement getNotices() {
+        return waitAndGet(noticesSelector);
     }
 
     public WebElement getUserProfileLink() {
