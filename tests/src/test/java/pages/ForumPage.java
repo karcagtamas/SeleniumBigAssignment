@@ -15,7 +15,9 @@ public class ForumPage extends BasePage {
     private final By loginFormButtonSelector = By.xpath("//button[.//span[text()='Log in']]");
     private final By blockMessageSelector = By.xpath("//div[contains(@class,'blockMessage')]");
     private final By noticesSelector = By.xpath("//ul[contains(@class,'notices')]");
+
     private final By logoutSelector = By.xpath("//a[text()='Log out']");
+    private final By accountDetailsSelector = By.xpath("//div[contains(@class, 'menu')]//a[text()='Account details']");
 
     public ForumPage(WebDriver driver) {
         super(driver);
@@ -30,7 +32,16 @@ public class ForumPage extends BasePage {
     }
 
     public void clickLogoutButton() {
+        getUserProfileLink().click();
         waitAndGet(logoutSelector).click();
+    }
+
+    public AccountDetailsPage openAccountDetails() {
+        getUserProfileLink().click();
+        waitAndGet(accountDetailsSelector).click();
+        body();
+
+        return new AccountDetailsPage(driver);
     }
 
     public void tryToLogin(String username, String password) {

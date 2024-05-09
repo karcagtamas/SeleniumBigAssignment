@@ -51,7 +51,6 @@ public class LoginTest {
     @Test
     public void onLogoutClickShouldLogout() {
         forumPage.tryToLogin(Configuration.getProperty(ConfigKey.USERNAME), Configuration.getProperty(ConfigKey.PASSWORD));
-        forumPage.getUserProfileLink().click();
         forumPage.clickLogoutButton();
     }
 
