@@ -16,7 +16,7 @@ public class DriverInitializer {
     }
 
     public static WebDriver initialize(URL url) {
-        final var driver = new RemoteWebDriver(url, new ChromeOptions());
+        final var driver = new RemoteWebDriver(url, new ChromeOptions().setAcceptInsecureCerts(true).addArguments("--disable-gpu"));
         driver.manage().window().maximize();
 
         return driver;
