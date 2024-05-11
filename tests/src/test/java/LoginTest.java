@@ -11,6 +11,7 @@ import pages.HomePage;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
+import static core.Utils.stringContains;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest {
@@ -30,22 +31,22 @@ public class LoginTest {
     public void invalidUsernameShouldCauseError() {
         forumPage.tryToLogin("asd123asd123asd123", "asd123asd123asd123");
 
-        assertTrue(forumPage.getBlockMessage().getText().contains("could not be found"));
+        assertTrue(stringContains(forumPage.getBlockMessage().getText(), "could not be found"));
     }
 
     @Test
     public void invalidPasswordShouldCauseError() {
         forumPage.tryToLogin(Configuration.getProperty(ConfigKey.USERNAME), "asd123asd123asd123");
 
-        assertTrue(forumPage.getBlockMessage().getText().toLowerCase().contains("incorrect password"));
+        assertTrue(stringContains(forumPage.getBlockMessage().getText(), "incorrect password"));
     }
 
     @Test
     public void validUsernameAndPasswordShouldBeSuccess() {
         forumPage.tryToLogin(Configuration.getProperty(ConfigKey.USERNAME), Configuration.getProperty(ConfigKey.PASSWORD));
 
-        assertTrue(forumPage.getNotices().getText().contains("Welcome"));
-        assertTrue(forumPage.getNotices().getText().contains(Configuration.getProperty(ConfigKey.USERNAME)));
+        assertTrue(stringContains(forumPage.getNotices().getText(), "Welcome"));
+        assertTrue(stringContains(forumPage.getNotices().getText(), Configuration.getProperty(ConfigKey.USERNAME)));
     }
 
     @Test

@@ -29,7 +29,7 @@ public class PrivacyPageTest {
     }
 
     @Test
-    public void usernameShouldBeVisibleOnTheForm() {
+    public void statusSettingShouldChangeAfterSubmit() {
         privacyPage.selectStatusCheckbox();
         privacyPage.clickSubmitButton();
 

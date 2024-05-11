@@ -43,6 +43,10 @@ public abstract class BasePage {
         return waitAndGet(overlaySelector);
     }
 
+    public String getTitle() {
+        return driver.getTitle();
+    }
+
     protected String getText(By selector) {
         return waitAndGet(selector).getText();
     }

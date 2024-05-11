@@ -11,6 +11,7 @@ import pages.HomePage;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
+import static core.Utils.stringContains;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AccountDetailsTest {
@@ -29,7 +30,7 @@ public class AccountDetailsTest {
 
     @Test
     public void usernameShouldBeVisibleOnTheForm() {
-        assertTrue(accountDetailsPage.getForm().getText().toLowerCase().contains(Configuration.getProperty(ConfigKey.USERNAME)));
+        assertTrue(stringContains(accountDetailsPage.getForm().getText(), Configuration.getProperty(ConfigKey.USERNAME)));
     }
 
     @AfterEach

@@ -11,6 +11,7 @@ import pages.HomePage;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
+import static core.Utils.stringContains;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ForumTest {
@@ -27,6 +28,11 @@ public class ForumTest {
     }
 
     @Test
+    public void titleShouldContainsForumWord() {
+        assertTrue(stringContains(forumPage.getTitle(), "Forum"));
+    }
+
+    @Test
     public void loginButtonShouldBeVisible() {
         assertTrue(forumPage.getLoginButton().isDisplayed());
     }
@@ -35,7 +41,7 @@ public class ForumTest {
     public void onLoginClickLoginDialogShouldDisplayed() {
         forumPage.clickLoginButton();
         assertTrue(forumPage.overlayTitle().isDisplayed());
-        assertTrue(forumPage.overlayTitle().getText().contains("Log in"));
+        assertTrue(stringContains(forumPage.overlayTitle().getText(), "Log in"));
     }
 
     @AfterEach

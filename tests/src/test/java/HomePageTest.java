@@ -10,6 +10,7 @@ import pages.HomePage;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
+import static core.Utils.stringContains;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomePageTest {
@@ -25,7 +26,7 @@ public class HomePageTest {
 
     @Test
     public void newsShouldBeOnThePage() {
-        assertTrue(homePage.getNewsBlock().getText().toLowerCase().contains("news"));
+        assertTrue(stringContains(homePage.getNewsBlock().getText(), "news"));
     }
 
     @AfterEach
