@@ -7,7 +7,7 @@ import pages.HomePage;
 import pages.PrivacyPage;
 
 import static core.Utils.stringContains;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * <p>Test cases for the Privacy Page</p>
@@ -28,14 +28,22 @@ public class PrivacyPageTest extends SeleniumTest {
 
     @Test
     public void statusSettingShouldChangeAfterSubmit() {
+        final var old = privacyPage.isStatusCheckboxSelected();
         privacyPage.selectStatusCheckbox();
         privacyPage.clickOnSubmitButton();
+        privacyPage.getStatusCheckbox();
+        privacyPage.waitWithTimeout(2);
 
-        assertTrue(true);
+        assertNotEquals(old, privacyPage.isStatusCheckboxSelected());
     }
 
     @Test
     public void selectedNavigationItemShouldBePrivacy() {
         assertTrue(stringContains(privacyPage.getSelectedNavigationItemText(), "Privacy"));
+    }
+
+    @Test
+    public void pageTitleShouldContainsPrivacyWord() {
+        assertTrue(stringContains(privacyPage.getTitle(), "Privacy")); // Static test for current page title
     }
 }

@@ -34,4 +34,9 @@ public class AccountDetailsPageTest extends SeleniumTest {
     public void selectedNavigationItemShouldBeAccountDetails() {
         assertTrue(stringContains(accountDetailsPage.getSelectedNavigationItemText(), "Account details"));
     }
+
+    @Test
+    public void pageTitleShouldContainsAccountDetailsWord() {
+        assertTrue(stringContains(accountDetailsPage.getTitle(), "Account details")); // Static test for current page title
+    }
 }

@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public abstract class BasePage {
 
@@ -67,6 +68,17 @@ public abstract class BasePage {
      */
     public String getTitle() {
         return driver.getTitle();
+    }
+
+    /**
+     * Refresh current page
+     */
+    public void refresh() {
+        driver.navigate().refresh();
+    }
+
+    public void waitWithTimeout(long seconds) {
+        wait.withTimeout(seconds, TimeUnit.SECONDS);
     }
 
     /**
