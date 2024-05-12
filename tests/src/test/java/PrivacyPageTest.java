@@ -1,45 +1,41 @@
-import core.DriverInitializer;
+import core.SeleniumTest;
 import core.configuration.ConfigKey;
 import core.configuration.Configuration;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.PrivacyPage;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-
+import static core.Utils.stringContains;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PrivacyPageTest {
+/**
+ * <p>Test cases for the Privacy Page</p>
+ * <p>The cases verify the static overview and send submit form with modified settings</p>
+ */
+public class PrivacyPageTest extends SeleniumTest {
 
-    private WebDriver driver;
     private PrivacyPage privacyPage;
 
-    @BeforeEach
-    public void setUp() throws MalformedURLException, URISyntaxException {
-        driver = DriverInitializer.initialize(Configuration.getProperty(ConfigKey.BROWSER));
+    @Override
+    protected void testCaseInitializer(WebDriver driver) {
         final var homePage = new HomePage(driver);
-        final var forumPage = homePage.clickForumNavItem();
-        forumPage.tryToLogin(Configuration.getProperty(ConfigKey.USERNAME), Configuration.getProperty(ConfigKey.PASSWORD));
-        final var accountDetailsPage = forumPage.openAccountDetails();
+        final var forumPage = homePage.clickOnForumNavigationItem();
+        forumPage.doLogin(Configuration.getProperty(ConfigKey.USERNAME), Configuration.getProperty(ConfigKey.PASSWORD));
+        final var accountDetailsPage = forumPage.openAccountDetailsPage();
         privacyPage = accountDetailsPage.openPrivacyPage();
     }
 
     @Test
     public void statusSettingShouldChangeAfterSubmit() {
         privacyPage.selectStatusCheckbox();
-        privacyPage.clickSubmitButton();
+        privacyPage.clickOnSubmitButton();
 
         assertTrue(true);
     }
 
-    @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+    @Test
+    public void selectedNavigationItemShouldBePrivacy() {
+        assertTrue(stringContains(privacyPage.getSelectedNavigationItemText(), "Privacy"));
     }
 }

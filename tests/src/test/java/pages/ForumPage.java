@@ -27,16 +27,20 @@ public class ForumPage extends BasePage {
         return waitAndGet(loginButtonSelector);
     }
 
-    public void clickLoginButton() {
+    public boolean isLoginButtonExists() {
+        return isElementExists(loginButtonSelector);
+    }
+
+    public void clickOnLoginButton() {
         waitAndGet(loginButtonSelector).click();
     }
 
-    public void clickLogoutButton() {
+    public void clickOnLogoutButton() {
         getUserProfileLink().click();
         waitAndGet(logoutSelector).click();
     }
 
-    public AccountDetailsPage openAccountDetails() {
+    public AccountDetailsPage openAccountDetailsPage() {
         getUserProfileLink().click();
         waitAndGet(accountDetailsSelector).click();
         body();
@@ -44,8 +48,8 @@ public class ForumPage extends BasePage {
         return new AccountDetailsPage(driver);
     }
 
-    public void tryToLogin(String username, String password) {
-        clickLoginButton();
+    public void doLogin(String username, String password) {
+        clickOnLoginButton();
         overlay();
         waitAndGet(loginUsernameFieldSelector).sendKeys(username);
         waitAndGet(loginPasswordFieldSelector).sendKeys(password);

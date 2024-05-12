@@ -1,38 +1,31 @@
-import core.DriverInitializer;
-import core.configuration.ConfigKey;
-import core.configuration.Configuration;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import core.SeleniumTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-
 import static core.Utils.stringContains;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HomePageTest {
+/**
+ * <p>Test cases for the Home Page</p>
+ * <p>The test cases are mostly static page tests</p>
+ */
+public class HomePageTest extends SeleniumTest {
 
-    private WebDriver driver;
     private HomePage homePage;
 
-    @BeforeEach
-    public void setUp() throws MalformedURLException, URISyntaxException {
-        driver = DriverInitializer.initialize(Configuration.getProperty(ConfigKey.BROWSER));
+    @Override
+    protected void testCaseInitializer(WebDriver driver) {
         homePage = new HomePage(driver);
     }
 
     @Test
-    public void newsShouldBeOnThePage() {
-        assertTrue(stringContains(homePage.getNewsBlock().getText(), "news"));
+    public void newsBlockShouldBeOnThePage() {
+        assertTrue(stringContains(homePage.getNewsBlock().getText(), "news")); // Static page test
     }
 
-    @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+    @Test
+    public void forumNavigationItemShouldBeOnThePage() {
+        assertTrue(homePage.isFormNavigationItemsExists()); // Static page test
     }
 }

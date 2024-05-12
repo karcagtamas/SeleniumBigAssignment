@@ -10,6 +10,7 @@ public class AccountDetailsPage extends BasePage {
     private final By formSelector = By.xpath("//div[contains(@class, 'p-body')]//form");
 
     private final By privacyNavItemSelector = By.xpath("//div[contains(@class, 'p-body-sideNav')]//a[contains(text(), 'Privacy')]");
+    private final By selectedNavItemSelector = By.xpath("//div[contains(@class, 'p-body-sideNav')]//a[contains(@class, 'selected')]");
 
     public AccountDetailsPage(WebDriver driver) {
         super(driver);
@@ -24,5 +25,9 @@ public class AccountDetailsPage extends BasePage {
         body();
 
         return new PrivacyPage(driver);
+    }
+
+    public String getSelectedNavigationItemText() {
+        return getText(selectedNavItemSelector);
     }
 }

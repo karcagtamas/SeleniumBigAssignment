@@ -3,9 +3,7 @@ package pages;
 import core.BasePage;
 import core.configuration.ConfigKey;
 import core.configuration.Configuration;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public class HomePage extends BasePage {
 
@@ -19,7 +17,7 @@ public class HomePage extends BasePage {
         body();
     }
 
-    public ForumPage clickForumNavItem() {
+    public ForumPage clickOnForumNavigationItem() {
         waitAndGet(forumNavItemSelector).click();
         body();
 
@@ -28,5 +26,9 @@ public class HomePage extends BasePage {
 
     public WebElement getNewsBlock() {
         return waitAndGet(newsBlockSelector);
+    }
+
+    public boolean isFormNavigationItemsExists() {
+        return isElementExists(forumNavItemSelector);
     }
 }
