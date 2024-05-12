@@ -1,6 +1,7 @@
 import core.SeleniumTest;
 import core.configuration.ConfigKey;
 import core.configuration.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.AccountDetailsPage;
@@ -26,16 +27,19 @@ public class AccountDetailsPageTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Verify username visibility on the form")
     public void usernameShouldBeVisibleOnTheForm() {
         assertTrue(stringContains(accountDetailsPage.getForm().getText(), Configuration.getProperty(ConfigKey.USERNAME)));
     }
 
     @Test
+    @DisplayName("Verify the currently selected navigator item")
     public void selectedNavigationItemShouldBeAccountDetails() {
         assertTrue(stringContains(accountDetailsPage.getSelectedNavigationItemText(), "Account details"));
     }
 
     @Test
+    @DisplayName("Verify the page title")
     public void pageTitleShouldContainsAccountDetailsWord() {
         assertTrue(stringContains(accountDetailsPage.getTitle(), "Account details")); // Static test for current page title
     }

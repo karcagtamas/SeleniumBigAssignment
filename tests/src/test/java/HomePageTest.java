@@ -1,4 +1,5 @@
 import core.SeleniumTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
@@ -20,11 +21,13 @@ public class HomePageTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Verify news block existence")
     public void newsBlockShouldBeOnThePage() {
         assertTrue(stringContains(homePage.getNewsBlock().getText(), "news")); // Static page test
     }
 
     @Test
+    @DisplayName("Verify forum navigation item existence")
     public void forumNavigationItemShouldBeOnThePage() {
         assertTrue(homePage.isFormNavigationItemsExists()); // Static page test
     }

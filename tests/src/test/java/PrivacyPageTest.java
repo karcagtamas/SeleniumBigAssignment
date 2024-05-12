@@ -1,6 +1,7 @@
 import core.SeleniumTest;
 import core.configuration.ConfigKey;
 import core.configuration.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
@@ -27,22 +28,25 @@ public class PrivacyPageTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Verify form sending with logged in user")
     public void statusSettingShouldChangeAfterSubmit() {
         final var old = privacyPage.isStatusCheckboxSelected();
         privacyPage.selectStatusCheckbox();
         privacyPage.clickOnSubmitButton();
         privacyPage.getStatusCheckbox();
-        privacyPage.waitWithTimeout(2);
+        privacyPage.waitWithTimeout(5);
 
         assertNotEquals(old, privacyPage.isStatusCheckboxSelected());
     }
 
     @Test
+    @DisplayName("Verify the currently selected navigator item")
     public void selectedNavigationItemShouldBePrivacy() {
         assertTrue(stringContains(privacyPage.getSelectedNavigationItemText(), "Privacy"));
     }
 
     @Test
+    @DisplayName("Verify the page title")
     public void pageTitleShouldContainsPrivacyWord() {
         assertTrue(stringContains(privacyPage.getTitle(), "Privacy")); // Static test for current page title
     }

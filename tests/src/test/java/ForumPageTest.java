@@ -1,4 +1,5 @@
 import core.SeleniumTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.ForumPage;
@@ -23,17 +24,20 @@ public class ForumPageTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Verify the page title")
     public void pageTitleShouldContainsForumWord() {
         assertTrue(stringContains(forumPage.getTitle(), "Forum")); // Static test for current page title
     }
 
     @Test
+    @DisplayName("Verify login button existence and visibility")
     public void loginButtonShouldBeVisible() {
         assertTrue(forumPage.isLoginButtonExists());
         assertTrue(forumPage.getLoginButton().isDisplayed());
     }
 
     @Test
+    @DisplayName("Verify login button click overlay behaviour")
     public void onLoginClickLoginDialogShouldDisplayed() {
         forumPage.clickOnLoginButton();
         assertTrue(forumPage.isOverlayExists());

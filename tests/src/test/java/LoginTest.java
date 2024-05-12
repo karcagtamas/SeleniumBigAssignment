@@ -1,6 +1,7 @@
 import core.SeleniumTest;
 import core.configuration.ConfigKey;
 import core.configuration.Configuration;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.ForumPage;
@@ -25,6 +26,7 @@ public class LoginTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Test login with invalid entries (username and password)")
     public void invalidUsernameShouldCauseUsernameNotFoundError() {
         forumPage.doLogin("asd123asd123asd123", "asd123asd123asd123");
 
@@ -32,6 +34,7 @@ public class LoginTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Test login with invalid password (username is valid)")
     public void invalidPasswordShouldCauseIncorrectPasswordError() {
         forumPage.doLogin(Configuration.getProperty(ConfigKey.USERNAME), "asd123asd123asd123");
 
@@ -39,6 +42,7 @@ public class LoginTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Test successful login scenario")
     public void validUsernameAndPasswordShouldDisplayWelcome() {
         forumPage.doLogin(Configuration.getProperty(ConfigKey.USERNAME), Configuration.getProperty(ConfigKey.PASSWORD));
 
@@ -47,6 +51,7 @@ public class LoginTest extends SeleniumTest {
     }
 
     @Test
+    @DisplayName("Test logout scenario")
     public void onLogoutClickPageShouldDoLogout() {
         forumPage.doLogin(Configuration.getProperty(ConfigKey.USERNAME), Configuration.getProperty(ConfigKey.PASSWORD));
         forumPage.clickOnLogoutButton();
